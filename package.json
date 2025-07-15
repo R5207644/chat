@@ -1,0 +1,21 @@
+{
+  "name": "javascript-web-dev",
+  "version": "1.0.0",
+  "description": "\"# chat\" \r <br>\r This is a mini crud app app created using express for mongodb<br>\r for using it replace url of mongodb with your mongodb url",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R5207644/chat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/R5207644/chat/issues"
+  },
+  "homepage": "https://github.com/R5207644/chat#readme"
+}
