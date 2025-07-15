@@ -1,58 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>chats</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Chats</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
-
 <body>
-  <h3>All chats</h3>
+  <h3>All Chats</h3>
+
   <form action="/chats/new">
-    <input type="submit" value="start new chat">
+    <input type="submit" value="Start New Chat">
   </form>
 
-  <% for (let chat of chats) {%>
+  <% for (let chat of chats) { %>
     <div class="chats">
-      <tr>
-        <% if (chat.updated_at){%>
-          <td><em class="banner">updated</em><%= chat.updated_at.toString().split(" ")[4]; %></td>
-              &nbsp;&nbsp;
-              <i>
-                <td><%= chat.updated_at.toString().split(" ").slice(0, 4).join(" "); %></td>
-              </i>
-        <%} else {%>
-            <td>
-              <%= chat.created_at.toString().split(" ")[4]; %></td>
-                &nbsp;&nbsp;
-              <i>
-                <td><%= chat.created_at.toString().split(" ").slice(0, 4).join(" "); %></td>
-              </i>
-            <%}%>
-      </tr>
-    <p>send by <i><%= chat.from %></i>
-    </p>
-    <div class=" msg">
-                <p>
-                  <%= chat.msg %>
-                    <form action="/chats/edit" method="post">
-                      <input type="hidden" value="<%= chat._id %>" name="id">
-                      <button>edit</button>
-                    </form>
-                    <form action="/chats/<%= chat._id%>?_method=delete" method="post">
-                      <button onclick="alert('do you really want delete?')">delete</button>
-                    </form>
-                </p>
-    </div>
-    <p align="right">received by <i>
-        <%= chat.to %>
-      </i>
-    </p>
-    </div>
-    <% } %>
+      <div class="chat-header">
+        <% if (chat.updated_at) { %>
+          <span class="banner">Updated</span>
+          <span><%= new Date(chat.updated_at).toLocaleTimeString() %> | <%= new Date(chat.updated_at).toDateString() %></span>
+        <% } else { %>
+          <span><%= new Date(chat.created_at).toLocaleTimeString() %> | <%= new Date(chat.created_at).toDateString() %></span>
+        <% } %>
+      </div>
 
+      <p><strong>From:</strong> <%= chat.from %></p>
+
+      <div class="msg">
+        <p><%= chat.msg %></p>
+
+        <form action="/chats/edit" method="post" style="display:inline-block">
+          <input type="hidden" name="id" value="<%= chat._id %>">
+          <button type="submit">Edit</button>
+        </form>
+
+        <form action="/chats/<%= chat._id %>?_method=delete" method="post" style="display:inline-block">
+          <button type="submit" onclick="return confirm('Do you really want to delete this chat?')">Delete</button>
+        </form>
+      </div>
+
+      <div class="chat-footer">
+        <strong>To:</strong> <%= chat.to %>
+      </div>
+    </div>
+  <% } %>
 </body>
-
 </html>

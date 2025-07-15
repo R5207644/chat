@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>edit you chats</title>
+  <title>Edit Chat</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
-
 <body>
-  <form method="post" action="/chats/<%= chat._id %>?_method=put" >
-    <h3>Edit msg</h3>
-    <p>sender: <%= chat.from %>
-    </p>
-    <p>receiver: <%= chat.to %>
-    </p>
-    <p>
-      <textarea name="msg"><%= chat.msg %></textarea>
-    </p>
-    <p>
-      <button>edit</button>
-    </p>
+  <form method="post" action="/chats/<%= chat._id %>?_method=put">
+    <h3>Edit Message</h3>
+
+    <p><strong>Sender:</strong> <%= chat.from %></p>
+    <p><strong>Receiver:</strong> <%= chat.to %></p>
+
+    <label>Edit Message:</label>
+    <textarea name="msg" rows="4" maxlength="50" required><%= chat.msg %></textarea>
+
+    <button type="submit">Update</button>
+    <a href="/chats"><button type="button">Cancel</button></a>
   </form>
 </body>
-
 </html>
